@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
@@ -20,6 +20,8 @@ export const User = () => {
 	const name = useUserStore((state) => state.name);
 	const setName = useUserStore((state) => state.setName);
 
+	const setAvatar = useUserStore((state) => state.setAvatar);
+
 	const navigate = useNavigate();
 
 	useEffect(() => {
@@ -31,7 +33,8 @@ export const User = () => {
 					method: "GET",
 					withCredentials: true,
 				});
-				setName(response.data.user.displayName);
+				setName(response.data.user.display_name);
+				setAvatar(response.data.user.photo_url);
 			} catch (error) {
 				console.log(error);
 				return null;
@@ -68,7 +71,12 @@ export const User = () => {
 					onClick={handleLogout}
 					className="cursor-pointer rounded-xl bg-white px-4 py-1 font-bold text-black hover:bg-neutral-200"
 				>
-					Logout{" "}
+					Logout
+				</button>
+				<button className="cursor-pointer rounded-xl bg-white px-4 py-1 font-bold text-black hover:bg-neutral-200">
+					<NavLink to="/user/settings" className="block">
+						Settings
+					</NavLink>
 				</button>
 			</div>
 		</Container>

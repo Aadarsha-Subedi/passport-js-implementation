@@ -1,6 +1,6 @@
 # PassportJS OAuth2.0 Authentication Implementation
 
-This mini-project demonstrates a complete implementation of OAuth2.0 authentication using PassportJS, featuring both backend and frontend components. The application supports authentication through multiple providers (Google and GitHub) and implements protected routes with session management.
+This mini-project demonstrates a complete implementation of OAuth2.0 authenticationg PassportJS, featuring both backend (with database) and frontend components. The application supports authentication through multiple providers (Google and GitHub), stores them in a postgreSQL database and implements protected routes with session management.
 
 ## Features
 
@@ -24,6 +24,7 @@ This mini-project demonstrates a complete implementation of OAuth2.0 authenticat
 -   express-session
 -   CORS
 -   dotenv
+-   postgreSQL
 
 ### Frontend
 
@@ -107,6 +108,7 @@ GOOGLE_CLIENT_ID=YOUR_GOOGLE_CLIENT_ID
 GOOGLE_CLIENT_SECRET=YOUR_GOOGLE_CLIENT_SECRET
 GITHUB_CLIENT_ID=YOUR_GITHUB_CLIENT_ID
 GITHUB_CLIENT_SECRET=YOUR_GITHUB_CLIENT_SECRET
+DATABASE_URL=YOUR_DATABASE_URL
 ```
 
 ## Setup Instructions
@@ -129,6 +131,7 @@ GITHUB_CLIENT_SECRET=YOUR_GITHUB_CLIENT_SECRET
     - Copy `.env.example` to `.env` in the backend directory
     - Fill in your OAuth2.0 credentials from Google and GitHub
     - Set appropriate port numbers and URLs
+    - Set the connection string for the database
     - Update the backend URL in `passportjs-frontend/src/utils/url.ts` to match your backend port
 
 4. Start the development servers:
@@ -153,7 +156,7 @@ GITHUB_CLIENT_SECRET=YOUR_GITHUB_CLIENT_SECRET
 4. Configure the OAuth consent screen
 5. Create credentials (OAuth client ID)
 6. Add authorized redirect URIs:
-    - `http://localhost:YOUR_BACKEND_PORT/auth/google/callback`
+    - `http://localhost:YOUR_BACKEND_PORT/auth/google/callback` or your public callback url
 
 ### GitHub OAuth2.0
 
@@ -161,7 +164,7 @@ GITHUB_CLIENT_SECRET=YOUR_GITHUB_CLIENT_SECRET
 2. Create a new OAuth App
 3. Configure the application settings
 4. Add the callback URL:
-    - `http://localhost:YOUR_BACKEND_PORT/auth/github/callback`
+    - `http://localhost:YOUR_BACKEND_PORT/auth/github/callback` or your public callback url
 
 ## Security Considerations
 

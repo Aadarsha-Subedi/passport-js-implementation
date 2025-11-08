@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { url } from "../utils/url";
 import { useAuthStore } from "../store/auth-store";
+import { Settings } from "../pages/user-settings";
 
 export const App = () => {
 	const setLoggedIn = useAuthStore((state) => state.setLoggedIn);
@@ -44,14 +45,24 @@ export const App = () => {
 							</PublicRoute>
 						}
 					/>
-					<Route
-						path="user"
-						element={
-							<ProtectedRoute>
-								<User />
-							</ProtectedRoute>
-						}
-					/>
+					<Route path="user/">
+						<Route
+							index
+							element={
+								<ProtectedRoute>
+									<User />
+								</ProtectedRoute>
+							}
+						/>
+						<Route
+							path="settings"
+							element={
+								<ProtectedRoute>
+									<Settings />
+								</ProtectedRoute>
+							}
+						/>
+					</Route>
 				</Route>
 			</Routes>
 		</BrowserRouter>
